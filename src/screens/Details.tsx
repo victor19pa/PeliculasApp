@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 const Details = () => {
   return (
     <View>
-      <Text>
+      <Text style={{color: 'black'}}>
         DETAILS
       </Text>
     </View>

@@ -1,12 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Button, Text, View } from 'react-native'
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <View>
-      <Text>
+      <Text style={{color: 'black'}}>
         HOME
       </Text>
+      
     </View>
   )
 }
