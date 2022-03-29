@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import { useMovies } from '../hooks/useMovies';
 import MoviePoster from '../components/MoviePoster';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import HorizontalSlider from '../components/HorizontalSlider';
 
 const { width: windowWidth } = Dimensions.get('window');
 
 const Home = () => {
   const { top } = useSafeAreaInsets();
-  const { peliculasEnCine, isLoading } = useMovies();
+  const { peliculasEnCine, pelicularPopulares ,isLoading } = useMovies();
 
   if (isLoading) {
     return (
@@ -19,45 +20,28 @@ const Home = () => {
     )
   }
   return (
-    <View style={{ marginTop: top + 15 }}>
-      <View style={styles.carouselContainer}>
-        <Carousel
-          data={peliculasEnCine}
-          renderItem={({ item }: any) => <MoviePoster movie={item} />}
-          sliderWidth={windowWidth}
-          itemWidth={300}
-        />
+    <ScrollView>
+      <View style={{ marginTop: top + 15 }}>
+        <View style={styles.carouselContainer}>
+          <Carousel
+            data={peliculasEnCine}
+            renderItem={({ item }: any) => <MoviePoster movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={ 0.9 }
+          />
+        </View>
+        {/* Peliculas */}
+        {/* <HorizontalSlider title="Peliculas en Cine" movies={ peliculasEnCine }/> */}
+        <HorizontalSlider title="Populares" movies={ pelicularPopulares }/>
       </View>
-      {/* Peliculas */}
-      <View style={styles.flatlistContainer}>
-        <Text style={styles.txtFlatlist}>Peliculas en Cine</Text>
-        <FlatList
-          data={peliculasEnCine}
-          renderItem={({ item }: any) => (
-            <MoviePoster 
-              movie={item}
-              width={ 140 }
-              height={ 200 }
-            />
-          )}
-          keyExtractor={ (item) => item.id.toString()}
-          horizontal={ true }
-        />
-      </View>
-    </View>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({
   carouselContainer: {
     height: 440,
   },
-  flatlistContainer: {
-    height: 250
-  },
-  txtFlatlist: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  }
 });
 
 export default Home
