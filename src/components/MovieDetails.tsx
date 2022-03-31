@@ -1,8 +1,11 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import currencyFormatter from 'currency-formatter';
+import { View, Text, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Cast } from '../interfaces/creditsInterface';
 import { MovieFull } from '../interfaces/movieInterface'
+import TitleAtom from './Atoms/title.atom';
+import CastItem from './CastItem';
 
 interface Props {
   movieFull: MovieFull;
@@ -13,22 +16,45 @@ const MovieDetails = ({ movieFull, cast }: Props) => {
   return (
     <>
       {/* detalles */}
-      <View style={{ marginHorizontal: 20, }}>
+      <View style={{ marginHorizontal: 20, marginBottom: 15 }}>
         <View style={{ flexDirection: 'row' }}>
           <Icon
             name='star-outline'
             color='grey'
             size={20}
           />
-          <Text> {movieFull.vote_average} </Text>
-          <Text style={{marginLeft: 5}}>
-            - { movieFull.genres.map( item => item.name).join(', ')}
+          <Text style={{ color: 'black', fontSize: 16 }}> {movieFull.vote_average} </Text>
+          <Text style={{ marginLeft: 5, color: 'black', fontSize: 16 }}>
+            - {movieFull.genres.map(item => item.name).join(', ')}
           </Text>
         </View>
 
-      </View>
+        <TitleAtom title='Historia' />
 
-      {/* cast */}
+        <Text style={{ fontSize: 16 }} >
+          {movieFull.overview}
+        </Text>
+
+        <TitleAtom title='Presupuesto' />
+
+        <Text style={{ fontSize: 18 }} >
+          {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
+        </Text>
+        {/* cast */}
+
+        <View style={{ marginTop: 10, marginBottom: 100 }}>
+          <TitleAtom title='Actores' />
+          {/* <CastItem actor={cast[0]} /> */}
+          <FlatList
+            data={cast}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <CastItem actor={item} />}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 10, height: 60 }}
+          />
+        </View>
+      </View>
     </>
   )
 }
