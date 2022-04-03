@@ -12,8 +12,8 @@ LogBox.ignoreLogs([
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <Navigation /> */}
-      <FadeScreen />
+      <Navigation />
+      {/* <FadeScreen /> */}
     </NavigationContainer>
   )
 }

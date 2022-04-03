@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Animated, Button, View } from 'react-native'
 import { useFade } from '../hooks/useFade';
 
