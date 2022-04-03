@@ -24,8 +24,6 @@ const Home = () => {
     console.log(primary);
     console.log(secondary);
     
-    
-
   }
 
   if (isLoading) {
