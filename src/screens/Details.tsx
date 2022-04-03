@@ -50,7 +50,7 @@ const Details = ({ route, navigation }: Props) => {
           <Icon
             color='white'
             name='arrow-back-outline'
-            size={55}
+            size={35}
           />
         </TouchableOpacity>
       </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     zIndex: 999,
     elevation: 9,
     top: 5,
-    left: 5,
+    left: 15,
   }
 });
 
