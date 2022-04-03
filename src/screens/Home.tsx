@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ActivityIndicator, Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -17,7 +17,7 @@ const Home = () => {
   const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
   const { setMainColors, setPrevMainColors } = useContext(GradientContext);
 
-  const getPosterColors = async (index: Number) => {
+  const getPosterColors = async (index: number) => {
     const movie = nowPlaying[index]
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
@@ -25,6 +25,12 @@ const Home = () => {
 
     setMainColors({ primary, secondary })
   }
+
+  useEffect(() => {
+    if (nowPlaying.length > 0) {
+      getPosterColors(0)
+    }
+  }, [nowPlaying])
 
   if (isLoading) {
     return (

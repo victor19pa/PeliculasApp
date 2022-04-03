@@ -12,7 +12,7 @@ const GradientBackground = ({ children }: Props) => {
   const { colors } = useContext(GradientContext);
   
   return (
-    <View style={{ flex: 1, backgroundColor: '#084F6A' }}>
+    <View style={{ flex: 1 }}>
       <LinearGradient
         colors={[ colors.primary, colors.secondary, '#fff']}
         style={{ ...StyleSheet.absoluteFillObject }}
