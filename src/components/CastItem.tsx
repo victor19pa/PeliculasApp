@@ -22,7 +22,7 @@ const CastItem = ({ actor }: Props) => {
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>
           {actor.name}
         </Text>
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'grey' }}>
           {actor.character}
         </Text>
       </View>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flexDirection: 'row',
-    height: 50,
+    height: 55,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.34,
     shadowRadius: 7.49,
-    elevation: 20,
-
+    elevation: 15,
     borderRadius: 10,
     marginRight: 30,
     paddingRight: 15,

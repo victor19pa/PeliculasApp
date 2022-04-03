@@ -31,13 +31,13 @@ const MovieDetails = ({ movieFull, cast }: Props) => {
 
         <TitleAtom title='Historia' />
 
-        <Text style={{ fontSize: 16 }} >
+        <Text style={{ fontSize: 16 , color: 'grey'}} >
           {movieFull.overview}
         </Text>
 
         <TitleAtom title='Presupuesto' />
 
-        <Text style={{ fontSize: 18 }} >
+        <Text style={{ fontSize: 18, color: 'grey' }} >
           {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
         </Text>
         {/* cast */}
