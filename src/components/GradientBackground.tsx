@@ -10,11 +10,14 @@ interface Props {
 
 const GradientBackground = ({ children }: Props) => {
 
-  const { colors, prevColors } = useContext(GradientContext);
+  const { colors, prevColors, setPrevMainColors } = useContext(GradientContext);
   const { opacity, fadeIn, fadeOut } = useFade();
 
   useEffect(() => {
-    fadeIn();
+    fadeIn( () => {
+      setPrevMainColors(colors);
+      // fadeOut();
+    });
   }, [colors])
   
 
